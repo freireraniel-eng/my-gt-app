@@ -1,8 +1,7 @@
+import { useState } from 'react';
 import app from '../App';
 import Greetings from '../components/Greetings';
 import UserCard from '../components/UserCard';
-
-const visitorName = window.prompt('Qual o seu nome?') || "Visitante";
 
 const team = [
     {
@@ -33,9 +32,23 @@ const team = [
 ]
 
 function Home() {
+    const [visitorName, setVisitorName] = useState('');
+
     return (
         <>
-            <Greetings nome={visitorName}/>
+            <div className="name-form">
+                <label htmlFor="visitor-name">Como podemos chamar você?</label>
+                <input 
+                    id="visitor-name"
+                    type="text"
+                    value={visitorName}
+                    onChange={(event) => setVisitorName(event.target.value)}
+                    placeholder="Digite seu nome"
+                />
+                    
+            </div>                  
+            <Greetings nome={visitorName || "Visitante"}/>
+
             <section id="equipe">
                 <div className="section-heading">
                     <div>
